@@ -44,9 +44,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "MainActivity_License";
-
-    private static final String UTF_8 = "UTF-8";
+    private static final String TAG = "LicenseDemo";
 
     /**
      * Wiseplay DRM UUID
@@ -82,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * url of get license
      */
     private String licenseUrl = "http://117.78.34.30:8000/wisePlayDrm/getLicense";
+
+    /**
+     * keySetId from last offline license fetching
+     */
+    private byte[] offlineKeySetId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             MediaDrm mediaDrm = new MediaDrm(WISEPLAY_DRM_UUID);
             byte[] sessionID = mediaDrm.openSession();
 
-            // Obtain the keySetId of the license from the SharedPreferences.
-            byte[] keySetIdToDelete = new byte[0];
+            // Obtain the keySetId of the license from the store.
+            byte[] keySetIdToDelete = offlineKeySetId;
             MediaDrm.KeyRequest keyRequest =
                     mediaDrm.getKeyRequest(keySetIdToDelete, null, null, MediaDrm.KEY_TYPE_RELEASE, null);
 
@@ -155,10 +158,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             connection.setRequestProperty("content-type", "application/json");
             connection.connect();
 
-            String base64Payload = new String(Base64.encode(requestData, Base64.DEFAULT), UTF_8);
-            String body = "{\"payload\":\"" + base64Payload + "\",\"psshBox\":\"\",\"keyType\":\"" + MediaDrm.KEY_TYPE_RELEASE + "\"}";
             writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
-            writer.write(body);
+            writer.write(requestData);
             writer.close();
 
             int responseCode = connection.getResponseCode();
@@ -168,15 +169,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 inputStream.close();
                 connection.disconnect();
 
-                String jsonStr = new String(response, "UTF-8");
-                JSONObject jsonObject = new JSONObject(jsonStr);
-                String license = jsonObject.getString("payload");
-                byte[] base64decodeLicense = Base64.decode(license, Base64.DEFAULT);
-                mediaDrm.provideKeyResponse(sessionID, base64decodeLicense);
+                mediaDrm.provideKeyResponse(sessionID, response);
 
                 Toast.makeText(MainActivity.this, "delete license success.", Toast.LENGTH_SHORT).show();
             }
-            // Delete the cached license relationship from the sharedPreferences.
+            // Delete the cached license relationship from the store.
+            offlineKeySetId = null;
 
         } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException | JSONException e) {
             e.printStackTrace();
@@ -203,8 +201,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(MainActivity.this, "The device does not support wiseplay drm.", Toast.LENGTH_SHORT).show();
             return;
         }
-        // Obtain the keySetId of the license from the SharedPreferences.
-        byte[] keySetIdToRestore = new byte[0];
+        // Obtain the keySetId of the license from the store.
+        byte[] keySetIdToRestore = offlineKeySetId;
         try {
             MediaDrm mediaDrm = new MediaDrm(WISEPLAY_DRM_UUID);
             byte[] sessionID = mediaDrm.openSession();
@@ -246,10 +244,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             connection.setRequestProperty("content-type", "application/json");
             connection.connect();
 
-            String base64Payload = new String(Base64.encode(requestData, Base64.DEFAULT), UTF_8);
-            String body = "{\"payload\":\"" + base64Payload + "\",\"psshBox\":\"" + PSSH_BOX + "\",\"keyType\":\"" + MediaDrm.KEY_TYPE_OFFLINE + "\"}";
             writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
-            writer.write(body);
+            writer.write(requestData);
             writer.close();
 
             int responseCode = connection.getResponseCode();
@@ -258,12 +254,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 byte[] response = toByteArray(inputStream);
                 inputStream.close();
                 connection.disconnect();
-                String jsonStr = new String(response, "UTF-8");
-                JSONObject jsonObject = new JSONObject(jsonStr);
-                String license = jsonObject.getString("playload");
-                byte[] base64decodeLicense = Base64.decode(license, Base64.DEFAULT);
-                byte[]  keySetId = mediaDrm.provideKeyResponse(sessionID, base64decodeLicense);
-                // Save the keySetId of the offline license to the SharedPreferences.
+
+                byte[] keySetId = mediaDrm.provideKeyResponse(sessionID, response);
+
+                // Save the keySetId of the offline license to the store.
+                offlineKeySetId = keySetId;
 
                 Toast.makeText(MainActivity.this, "get offline license success.", Toast.LENGTH_SHORT).show();
             }
@@ -316,10 +311,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             connection.setRequestProperty("content-type", "application/json");
             connection.connect();
 
-            String base64Payload = new String(Base64.encode(requestData, Base64.DEFAULT), UTF_8);
-            String body = "{\"payload\":\"" + base64Payload + "\",\"psshBox\":\"" + PSSH_BOX + "\",\"keyType\":\"" + MediaDrm.KEY_TYPE_STREAMING + "\"}";
             writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
-            writer.write(body);
+            writer.write(requestData);
             writer.close();
 
             int responseCode = connection.getResponseCode();
@@ -328,11 +321,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 byte[] response = toByteArray(inputStream);
                 inputStream.close();
                 connection.disconnect();
-                String jsonStr = new String(response, "UTF-8");
-                JSONObject jsonObject = new JSONObject(jsonStr);
-                String license = jsonObject.getString("payload");
-                byte[] base64decodeLicense = Base64.decode(license, Base64.DEFAULT);
-                mediaDrm.provideKeyResponse(sessionID, base64decodeLicense);
+
+                mediaDrm.provideKeyResponse(sessionID, response);
 
                 Toast.makeText(MainActivity.this, "get online license success.", Toast.LENGTH_SHORT).show();
             }
