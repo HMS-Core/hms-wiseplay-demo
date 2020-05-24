@@ -16,11 +16,13 @@
 
 package com.example.wiseplaydemo;
 
+import android.icu.text.RelativeDateTimeFormatter;
 import android.media.DeniedByServerException;
 import android.media.MediaDrm;
 import android.media.NotProvisionedException;
 import android.media.ResourceBusyException;
 import android.media.UnsupportedSchemeException;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -105,21 +107,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.down_online_license:
-                getOnlineLicense();
-                // After obtaining the license, you can play the drm movie with license.
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        getOnlineLicense();
+                        // After obtaining the license, you can play the drm movie with license.
+                    }
+                }).start();
                 break;
 
             case R.id.down_offline_license:
-                getOfflineLicense();
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        getOfflineLicense();
+                    }
+                }).start();
                 break;
 
             case R.id.use_offline_license:
-                useOfflineLicense();
-                // After using the offline license, you can play the drm movie with license.
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        useOfflineLicense();
+                        // After using the offline license, you can play the drm movie with license.
+                    }
+                }).start();
                 break;
 
             case R.id.delete_license:
-                deleteLicense();
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        deleteLicense();
+                    }
+                }).start();
                 break;
             default:
                 break;
@@ -164,14 +186,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 mediaDrm.provideKeyResponse(sessionID, response);
 
-                Toast.makeText(MainActivity.this, "delete license success.", Toast.LENGTH_SHORT).show();
+                // Delete the cached license relationship from the store.
+                offlineKeySetId = null;
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "delete offline license success.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-            // Delete the cached license relationship from the store.
-            offlineKeySetId = null;
 
         } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException e) {
             e.printStackTrace();
-            Log.i(TAG, "delete license failed: " + e.getMessage());
+            Log.i(TAG, "delete offline license failed: " + e.getMessage());
         } finally {
             try {
                 if (outputStream != null) {
@@ -203,7 +231,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // If resotreKeys succeed, you can play it with this license.
 
-            Toast.makeText(MainActivity.this, "use offline license success.", Toast.LENGTH_SHORT).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(MainActivity.this, "use offline license success.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException e) {
             e.printStackTrace();
             Log.i(TAG, "use offline license failed: " + e.getMessage());
@@ -250,7 +284,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Save the keySetId of the offline license to the store.
                 offlineKeySetId = keySetId;
 
-                Toast.makeText(MainActivity.this, "get offline license success.", Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "get offline license success.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException e) {
             e.printStackTrace();
@@ -311,7 +350,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 mediaDrm.provideKeyResponse(sessionID, response);
 
-                Toast.makeText(MainActivity.this, "get online license success.", Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "get online license success.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         } catch (NotProvisionedException | IOException | DeniedByServerException | ResourceBusyException | UnsupportedSchemeException e) {
             e.printStackTrace();
