@@ -28,14 +28,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
@@ -136,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         HttpURLConnection connection = null;
-        BufferedWriter writer = null;
+        DataOutputStream outputStream = null;
         InputStream inputStream = null;
         try {
             MediaDrm mediaDrm = new MediaDrm(WISEPLAY_DRM_UUID);
@@ -158,16 +154,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             connection.setRequestProperty("content-type", "application/json");
             connection.connect();
 
-            writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
-            writer.write(requestData);
-            writer.close();
+            outputStream = new DataOutputStream(connection.getOutputStream());
+            outputStream.write(requestData);
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 inputStream = connection.getInputStream();
                 byte[] response = toByteArray(inputStream);
-                inputStream.close();
-                connection.disconnect();
 
                 mediaDrm.provideKeyResponse(sessionID, response);
 
@@ -176,13 +169,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Delete the cached license relationship from the store.
             offlineKeySetId = null;
 
-        } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException | JSONException e) {
+        } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException e) {
             e.printStackTrace();
             Log.i(TAG, "delete license failed: " + e.getMessage());
         } finally {
             try {
-                if (writer != null) {
-                    writer.close();
+                if (outputStream != null) {
+                    outputStream.close();
                 }
                 if (inputStream != null) {
                     inputStream.close();
@@ -223,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         HttpURLConnection connection = null;
-        BufferedWriter writer = null;
+        DataOutputStream outputStream = null;
         InputStream inputStream = null;
         try {
             // Obtain the value of pssh box of the movie whose UUID is wiseplay drm from the movie.
@@ -244,16 +237,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             connection.setRequestProperty("content-type", "application/json");
             connection.connect();
 
-            writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
-            writer.write(requestData);
-            writer.close();
+            outputStream = new DataOutputStream(connection.getOutputStream());
+            outputStream.write(requestData);
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 inputStream = connection.getInputStream();
                 byte[] response = toByteArray(inputStream);
-                inputStream.close();
-                connection.disconnect();
 
                 byte[] keySetId = mediaDrm.provideKeyResponse(sessionID, response);
 
@@ -262,13 +252,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Toast.makeText(MainActivity.this, "get offline license success.", Toast.LENGTH_SHORT).show();
             }
-        } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException | JSONException e) {
+        } catch (NotProvisionedException | UnsupportedSchemeException | ResourceBusyException | IOException | DeniedByServerException e) {
             e.printStackTrace();
             Log.i(TAG, "get offline license failed: " + e.getMessage());
         } finally {
             try {
-                if (writer != null) {
-                    writer.close();
+                if (outputStream != null) {
+                    outputStream.close();
                 }
                 if (inputStream != null) {
                     inputStream.close();
@@ -288,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         HttpURLConnection connection = null;
-        BufferedWriter writer = null;
+        DataOutputStream outputStream = null;
         InputStream inputStream = null;
         try {
             // Value of pssh box obtained from the movie.
@@ -311,28 +301,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             connection.setRequestProperty("content-type", "application/json");
             connection.connect();
 
-            writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
-            writer.write(requestData);
-            writer.close();
+            outputStream = new DataOutputStream(connection.getOutputStream());
+            outputStream.write(requestData);
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 inputStream = connection.getInputStream();
                 byte[] response = toByteArray(inputStream);
-                inputStream.close();
-                connection.disconnect();
 
                 mediaDrm.provideKeyResponse(sessionID, response);
 
                 Toast.makeText(MainActivity.this, "get online license success.", Toast.LENGTH_SHORT).show();
             }
-        } catch (NotProvisionedException | IOException | DeniedByServerException | ResourceBusyException | UnsupportedSchemeException | JSONException e) {
+        } catch (NotProvisionedException | IOException | DeniedByServerException | ResourceBusyException | UnsupportedSchemeException e) {
             e.printStackTrace();
             Log.i(TAG, "get online license failed: " + e.getMessage());
         } finally {
             try {
-                if (writer != null) {
-                    writer.close();
+                if (outputStream != null) {
+                    outputStream.close();
                 }
                 if (inputStream != null) {
                     inputStream.close();
