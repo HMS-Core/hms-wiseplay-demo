@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:id="@+id/down_online_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Online License" />
+
+
+    <Button
+        android:id="@+id/down_offline_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download Offline License" />
+
+    <Button
+        android:id="@+id/use_offline_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Offline License" />
+
+    <Button
+        android:id="@+id/delete_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Offline License" />
+</LinearLayout>
