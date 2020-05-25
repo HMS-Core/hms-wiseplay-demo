@@ -13,7 +13,9 @@
  
 ## Introduction
 
-Wiseplay demo code encapsulates APIs of the HUAWEI WisePlay Kit. It provides sample code for your reference or usage.
+Wiseplay demo code encapsulates APIs of the HUAWEI WisePlay Kit. It provides sample code for your reference or usage. Wiseplay DRM supplys a standards-based solution for content protection. It supports MPEG-DASH and HLS.    
+
+Development Guide: https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction
 
 ## Installation
 
