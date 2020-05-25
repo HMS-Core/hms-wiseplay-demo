@@ -16,6 +16,14 @@
 
 package com.example.wiseplaydemo;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.UUID;
+
 import android.icu.text.RelativeDateTimeFormatter;
 import android.media.DeniedByServerException;
 import android.media.MediaDrm;
@@ -29,14 +37,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.UUID;
 
 import androidx.appcompat.app.AppCompatActivity;
 
