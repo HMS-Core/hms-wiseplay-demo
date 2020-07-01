@@ -2,6 +2,8 @@
 
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
+English | [中文](https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md)
+
 ## Table of Contents
 
  * [Introduction](#introduction)
@@ -21,8 +23,7 @@ This demo provides demonstration for following scenarios:
 4. Deleting offline license. Use MediaDrm API to delete offline license.
 
 Learning more detail of HMS WisePlayKit, please follow [HUAWEI Development Guide](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)      
-    
-The chinese version of this README: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
+
 
 ## Getting Started
 
