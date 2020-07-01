@@ -19,7 +19,9 @@ This demo provides demonstration for following scenarios:
 3. Using offline license. Use MediaDrm API to restore offline license.
 4. Deleting offline license. Use MediaDrm API to delete offline license.
 
-Development Guide: https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction
+Learning more detail of HMS WisePlay Kit, please follow [Development Guide](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)      
+    
+The Chinese version of this README: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
 
 ## Getting Started
 
@@ -33,8 +35,7 @@ Android SDK Version >= 23 and JDK version >= 1.7 is recommended.
 	
 ##  License       
 
-WisePlay-kit Android demo is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+HMS WisePlay Kit Demo is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-----
 
-README Chinese version: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
+
