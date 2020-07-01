@@ -11,7 +11,7 @@
  
 ## Introduction
 
-HMS Wiseplay kit demo code encapsulates APIs of the HUAWEI WisePlay Kit. It provides sample code for your reference or usage. Wiseplay DRM supplys a standards-based solution for content protection. It supports MPEG-DASH and HLS.  
+HMS WisePlayKit demo code encapsulates APIs of the HUAWEI WisePlayKit. It provides sample code for your reference or usage. Wiseplay DRM supplys a standards-based solution for content protection. It supports MPEG-DASH and HLS.  
     
 This demo provides demonstration for following scenarios:    
 1. Obtaining online license. Use MediaDrm API to obtain online license.
@@ -19,7 +19,7 @@ This demo provides demonstration for following scenarios:
 3. Using offline license. Use MediaDrm API to restore offline license.
 4. Deleting offline license. Use MediaDrm API to delete offline license.
 
-Learning more detail of HMS WisePlay Kit, please follow [Development Guide](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)      
+Learning more detail of HMS WisePlayKit, please follow [HUAWEI Development Guide](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)      
     
 The chinese version of this README: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
 
@@ -35,7 +35,7 @@ Android SDK Version >= 23 and JDK version >= 1.7 is recommended.
 	
 ##  License       
 
-HMS WisePlay Kit Demo is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+HMS WisePlayKit demo is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 
 
