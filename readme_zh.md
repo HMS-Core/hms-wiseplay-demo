@@ -14,7 +14,7 @@
  
 ## 介绍
 
-WisePlay DRM demo展示了如何使用WisePlay DRM API来构建你的DRM应用，主要提供了License获取方面的代码演示。WisePlay DRM提供了一种基于Android标准接口的DRM方案. 支持MPEG-DASH和HLS。    
+WisePlay DRM demo展示了如何使用WisePlay DRM API来构建你的DRM应用，主要提供了License获取方面的代码演示。WisePlay DRM提供了一种基于Android标准接口的DRM方案,支持MPEG-DASH和HLS。    
     
 这个Demo主要演示了以下场景：    
 1. 获取在线License的演示。
