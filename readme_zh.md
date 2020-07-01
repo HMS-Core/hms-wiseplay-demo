@@ -1,5 +1,6 @@
 ## HMS WisePlayKit Demo
 
+中文 | [English](https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/README.md)
 
 ## 目录
 
@@ -21,8 +22,6 @@ HMS WiseplayKit demo展示了如何使用HUAWEI WisePlayKit API来构建你的DR
 
 开发指导可以参考[华为开发者联盟官网](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)    
     
-本说明文档的英文版本地址:https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/README.md
-
 ## 开始
 
 使用Demo之前, 请确保手机上正确安装HMS Core 4.0+.    
