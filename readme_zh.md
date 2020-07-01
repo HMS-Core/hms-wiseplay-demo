@@ -34,3 +34,7 @@ Android SDK Version >= 23以及JDK version >= 1.7
 ## 开源许可    
 
 HMS WisePlay kit demo 基于APL2.0 [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+----    
+
+英文版README连接:https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/README.md
