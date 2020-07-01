@@ -1,5 +1,7 @@
 ## HMS WisePlayKit Demo
 
+![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
+
 中文 | [English](https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/README.md)
 
 ## 目录
