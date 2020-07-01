@@ -34,3 +34,7 @@ Android SDK Version >= 23 and JDK version >= 1.7 is recommended.
 ##  License       
 
 WisePlay-kit Android demo is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+----
+
+README Chinese version: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
