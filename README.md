@@ -21,7 +21,7 @@ This demo provides demonstration for following scenarios:
 
 Learning more detail of HMS WisePlay Kit, please follow [Development Guide](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)      
     
-The Chinese version of this README: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
+The chinese version of this README: https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/readme_zh.md
 
 ## Getting Started
 
