@@ -11,13 +11,13 @@
  
 ## 介绍
 
-HMS Wiseplay kit demo展示了如何使用HUAWEI WisePlay Kit API来构建你的DRM应用. 主要提供了License获取方面的代码演示. Wiseplay提供了一种基于Android标准接口的DRM方案. 支持MPEG-DASH和HLS.  
+HMS WiseplayKit demo展示了如何使用HUAWEI WisePlayKit API来构建你的DRM应用，主要提供了License获取方面的代码演示。WisePlay提供了一种基于Android标准接口的DRM方案. 支持MPEG-DASH和HLS。    
     
-这个Demo主要演示了以下场景:    
-1. 获取在线License的演示.
-2. 下载离线License的演示.
-3. 使用离线License的演示.
-4. 删除已下载的离线License的演示.
+这个Demo主要演示了以下场景：    
+1. 获取在线License的演示。
+2. 下载离线License的演示。
+3. 使用离线License的演示。
+4. 删除已下载的离线License的演示。
 
 开发指导可以参考[华为开发者联盟官网](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)    
     
@@ -35,7 +35,7 @@ Android SDK Version >= 23以及JDK version >= 1.7
 	
 ## 开源许可    
 
-HMS WisePlay kit demo 基于APL2.0 [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+HMS WisePlayKit demo 基于APL2.0 [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)。
   
 
 
