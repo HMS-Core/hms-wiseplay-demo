@@ -19,7 +19,9 @@ HMS Wiseplay kit demo展示了如何使用HUAWEI WisePlay Kit API来构建你的
 3. 使用离线License的演示.
 4. 删除已下载的离线License的演示.
 
-开发指导可以参考华为开发者联盟官网: https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction
+开发指导可以参考[华为开发者联盟官网](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/wiseplay-introduction)    
+    
+本说明文档的英文版本地址:https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/README.md
 
 ## 开始
 
@@ -34,7 +36,6 @@ Android SDK Version >= 23以及JDK version >= 1.7
 ## 开源许可    
 
 HMS WisePlay kit demo 基于APL2.0 [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+  
 
-----    
 
-英文版README连接:https://github.com/HMS-Core/hms-wiseplay-demo/blob/master/README.md
