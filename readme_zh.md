@@ -1,4 +1,4 @@
-## HMS WisePlayKit Demo
+## WisePlay DRM Demo
 
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
@@ -14,7 +14,7 @@
  
 ## 介绍
 
-HMS WiseplayKit demo展示了如何使用HUAWEI WisePlayKit API来构建你的DRM应用，主要提供了License获取方面的代码演示。WisePlay提供了一种基于Android标准接口的DRM方案. 支持MPEG-DASH和HLS。    
+Wiseplay DRM demo展示了如何使用WisePlay DRM API来构建你的DRM应用，主要提供了License获取方面的代码演示。WisePlay提供了一种基于Android标准接口的DRM方案. 支持MPEG-DASH和HLS。    
     
 这个Demo主要演示了以下场景：    
 1. 获取在线License的演示。
@@ -36,7 +36,7 @@ Android SDK Version >= 23以及JDK version >= 1.7
 	
 ## 开源许可    
 
-HMS WisePlayKit demo 基于APL2.0 [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)。
+WisePlay DRM demo基于APL2.0 [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)。
   
 
 
